@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +20,8 @@ export const metadata = {
   title: "Home | UniUms - Smart University Management System",
   description: "UniUms is a subscription-based university management system that simplifies student and faculty administration with modules for attendance, leave, reports, exams, and more.",
   keywords: "university management system, ums, uniums, student management, faculty management, education software, attendance tracking, subscription-based ERP",
-  authors: [{ name: "Your Name", url: "https://uniums.com" }],
+  
+  authors: [{ name: "uniums", url: "https://uniums.com" }],
   openGraph: {
     title: "UniUms - Smart University Management System",
     description: "Streamline university and college management with UniUms. Manage students, faculty, exams, attendance, and more.",
@@ -56,6 +58,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+       <Head>
+        
+        <meta name="google-site-verification" content="xVG1I2x9qJCnpxv1g5mZ_4BWVkcgNoXrrPrO12wNFlA" />
+      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         <main>{children}</main>
