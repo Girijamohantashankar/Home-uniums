@@ -1,8 +1,33 @@
-'use client';
-
+"use client";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export default function page() {
+export default function Page() {
+    const cardsRef = useRef([]);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.fromTo(
+            cardsRef.current,
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: cardsRef.current,
+                    start: "top 80%", // Animates when cards enter the viewport
+                    toggleActions: "play none none none",
+                },
+            }
+        );
+    }, []);
+
     const plans = [
         {
             title: "Basic Plan",
@@ -47,7 +72,24 @@ export default function page() {
                 {plans.map((plan, index) => (
                     <div
                         key={index}
-                        className="p-8 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:border hover:border-blue-500"
+                        ref={(el) => (cardsRef.current[index] = el)}
+                        className="p-8 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-lg transform transition-all duration-300 opacity-0"
+                        onMouseEnter={() =>
+                            gsap.to(cardsRef.current[index], {
+                                scale: 1.05,
+                                boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
+                                duration: 0.3,
+                                ease: "power3.out",
+                            })
+                        }
+                        onMouseLeave={() =>
+                            gsap.to(cardsRef.current[index], {
+                                scale: 1,
+                                boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
+                                duration: 0.3,
+                                ease: "power3.out",
+                            })
+                        }
                     >
                         <h3 className="text-2xl font-semibold text-center mb-4">{plan.title}</h3>
                         <p className="text-xl font-bold text-blue-600 dark:text-blue-400 text-center">{plan.price}</p>
@@ -66,6 +108,6 @@ export default function page() {
                     </div>
                 ))}
             </div>
-        </section >
+        </section>
     );
 }

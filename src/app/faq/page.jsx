@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
+import gsap from 'gsap';
 
-export default function page() {
+export default function Page() {
     const [openIndex, setOpenIndex] = useState(null);
-
+    const faqRef = useRef([]);
+    
     const faqs = [
         {
             question: "What is UniUms and how does it help educational institutes?",
@@ -29,6 +31,14 @@ export default function page() {
         },
     ];
 
+    useEffect(() => {
+        gsap.fromTo(
+            faqRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }
+        );
+    }, []);
+
     const toggleFAQ = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
@@ -44,6 +54,7 @@ export default function page() {
                 {faqs.map((faq, index) => (
                     <div
                         key={index}
+                        ref={(el) => (faqRef.current[index] = el)}
                         className="mb-4 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md overflow-hidden transition-all"
                     >
                         <button
@@ -53,14 +64,13 @@ export default function page() {
                             <span className="text-lg font-semibold">{faq.question}</span>
                             <ChevronDown
                                 className={`transition-transform duration-300 ${
-                                    openIndex === index ? "rotate-180" : ""
+                                    openIndex === index ? 'rotate-180' : ''
                                 }`}
                             />
                         </button>
                         <div
-                            className={`overflow-hidden transition-all ${
-                                openIndex === index ? "max-h-40 p-4" : "max-h-0 p-0"
-                            }`}
+                            style={{ height: openIndex === index ? 'auto' : 0, opacity: openIndex === index ? 1 : 0 }}
+                            className="overflow-hidden transition-all duration-500 ease-in-out p-4"
                         >
                             <p className="text-gray-700 dark:text-gray-300">{faq.answer}</p>
                         </div>

@@ -1,8 +1,35 @@
-'use client';
+"use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Users, BookOpen, Calendar, ShieldCheck, BarChart3, Layers } from 'lucide-react';
 
 export default function Page() {
+    const featuresRef = useRef([]);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.fromTo(
+            featuresRef.current,
+            { opacity: 0, y: 50, rotateX: -10 },
+            {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 1.2,
+                ease: "power3.out",
+                stagger: 0.3,
+                scrollTrigger: {
+                    trigger: featuresRef.current[0],
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            }
+        );
+    }, []);
+
     const features = [
         {
             title: "Effortless Student Management",
@@ -46,12 +73,13 @@ export default function Page() {
                     UniUms is designed to simplify institute management with cutting-edge technology, automation, and AI-driven insights.
                 </p>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="group p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md flex flex-col items-center text-center
-                            transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                            ref={(el) => (featuresRef.current[index] = el)}
+                            className="group p-6 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-md flex flex-col items-center text-center
+                            transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:rotate-1"
                         >
                             <div className="mb-4">{feature.icon}</div>
                             <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-400">
