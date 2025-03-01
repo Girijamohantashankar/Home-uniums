@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import anime from 'animejs';
 import SolutionsSection from './Components/SolutionsSection';
 import TestimonialsSection from './Components/TestimonialsSection';
 import BookDemo from './bookdemo/page';
@@ -25,6 +27,32 @@ import profile3 from '../assets/360_F_608557356_ELcD2pwQO9pduTRL30umabzgJoQn5fnd
 
 
 export default function Home() {
+
+
+  const sectionRef = useRef(null);
+  const featureRefs = useRef([]);
+
+  useEffect(() => {
+    
+      anime.timeline({
+          easing: 'easeOutExpo',
+          duration: 1000,
+      })
+      .add({
+          targets: sectionRef.current,
+          opacity: [0, 1],
+          translateY: [50, 0],
+          duration: 1000,
+      })
+      .add({
+          targets: featureRefs.current,
+          opacity: [0, 1],
+          translateY: [30, 0],
+          delay: anime.stagger(300),
+      }, '-=500');
+  }, []);
+
+
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-[auto] md:min-h-screen pt-20 md:pt-8">
       <main className="flex flex-col items-center md:justify-center min-h-[auto] md:min-h-screen px-4 text-center mb-6">
@@ -51,45 +79,54 @@ export default function Home() {
         </div>
       </main>
 
-      <section className="bg-gray-100 dark:bg-gray-800 py-20 px-4">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            Why Choose UniUms?
-          </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-            Our platform is designed to enhance institutional management, making it more efficient, reliable, and user-friendly.
-          </p>
+      <section ref={sectionRef} className="bg-gray-100 dark:bg-gray-800 py-20 px-4 opacity-0">
+            <div className="container mx-auto text-center">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    Why Choose UniUms?
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-12">
+                    Our platform is designed to enhance institutional management, making it more efficient, reliable, and user-friendly.
+                </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-              <Image src={automation} alt="Automation" width={60} height={60} className="mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Automated Processes</h3>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Reduce manual work with automated student & faculty management.
-              </p>
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* Feature 1 */}
+                    <div 
+                        ref={(el) => featureRefs.current[0] = el} 
+                        className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg opacity-0"
+                    >
+                        <Image src={automation} alt="Automation" width={60} height={60} className="mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Automated Processes</h3>
+                        <p className="text-gray-600 dark:text-gray-400 mt-2">
+                            Reduce manual work with automated student & faculty management.
+                        </p>
+                    </div>
 
-            {/* Feature 2 */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-              <Image src={analytics} alt="Analytics" width={60} height={60} className="mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Advanced Analytics</h3>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Gain insights with real-time data and reports for better decision-making.
-              </p>
-            </div>
+                    {/* Feature 2 */}
+                    <div 
+                        ref={(el) => featureRefs.current[1] = el} 
+                        className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg opacity-0"
+                    >
+                        <Image src={analytics} alt="Analytics" width={60} height={60} className="mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Advanced Analytics</h3>
+                        <p className="text-gray-600 dark:text-gray-400 mt-2">
+                            Gain insights with real-time data and reports for better decision-making.
+                        </p>
+                    </div>
 
-            {/* Feature 3 */}
-            <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-              <Image src={support} alt="Support" width={60} height={60} className="mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">24/7 Support</h3>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Get round-the-clock support to ensure a smooth experience.
-              </p>
+                    {/* Feature 3 */}
+                    <div 
+                        ref={(el) => featureRefs.current[2] = el} 
+                        className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg opacity-0"
+                    >
+                        <Image src={support} alt="Support" width={60} height={60} className="mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">24/7 Support</h3>
+                        <p className="text-gray-600 dark:text-gray-400 mt-2">
+                            Get round-the-clock support to ensure a smooth experience.
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
 
       <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
