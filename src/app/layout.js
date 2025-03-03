@@ -59,7 +59,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
        <Head>
-        
+       <link rel="icon" href="/favicon.ico" />
         <meta name="google-site-verification" content="xVG1I2x9qJCnpxv1g5mZ_4BWVkcgNoXrrPrO12wNFlA" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

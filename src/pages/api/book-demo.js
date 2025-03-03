@@ -79,7 +79,7 @@ export default async function handler(req, res) {
         await transporter.sendMail({
             from: `"UniUms Demo Request" <${process.env.EMAIL_USER}>`,
             to: process.env.ADMIN_EMAIL,
-            cc: ['email1@example.com', 'email2@example.com'],
+            cc: ['bhabanishankarmohanta143@gmail.com', 'manasranjanmohanta27@gmail.com'],
             subject: '🚀 New Demo Booking Request - UniUms',
             html: `
                 <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
