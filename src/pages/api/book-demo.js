@@ -95,19 +95,19 @@ export default async function handler(req, res) {
                                 <td style="padding: 10px; background: #e9ecef;">${name}</td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; background: #007bff; color: white; font-weight: bold;">📧 Email</td>
+                                <td style="padding: 10px; background: #e9ecef; color: white; font-weight: bold;">📧 Email</td>
                                 <td style="padding: 10px; background: #f9f9f9;">${email}</td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; background: #007bff; color: white; font-weight: bold;">📞 Phone</td>
+                                <td style="padding: 10px; background: #f9f9f9; color: white; font-weight: bold;">📞 Phone</td>
                                 <td style="padding: 10px; background: #e9ecef;">${phone}</td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; background: #007bff; color: white; font-weight: bold;">🏫 Institute</td>
+                                <td style="padding: 10px; background: #e9ecef; color: white; font-weight: bold;">🏫 Institute</td>
                                 <td style="padding: 10px; background: #f9f9f9;">${institute}</td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; background: #007bff; color: white; font-weight: bold;">🏢 Organization</td>
+                                <td style="padding: 10px; background: #f9f9f9; color: white; font-weight: bold;">🏢 Organization</td>
                                 <td style="padding: 10px; background: #e9ecef;">${organization}</td>
                             </tr>
                             <tr>

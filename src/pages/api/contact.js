@@ -48,9 +48,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'Invalid email domain' });
     }
 
-console.log(process.env.EMAIL_USER, "user email");
-console.log(process.env.EMAIL_PASS, "user password");
-console.log(process.env.ADMIN_EMAIL, "admin email");
+
 
 
     // Setup Nodemailer Transporter
@@ -82,8 +80,8 @@ console.log(process.env.ADMIN_EMAIL, "admin email");
                                 <td style="padding: 10px; background: #e9ecef;">${name}</td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; background: #007bff; color: white; font-weight: bold;">📧 Email</td>
-                                <td style="padding: 10px; background: #f9f9f9;">${email}</td>
+                                <td style="padding: 10px; background: #f9f9f9; color: white; font-weight: bold;">📧 Email</td>
+                                <td style="padding: 10px; background: #007bff;">${email}</td>
                             </tr>
                             <tr>
                                 <td style="padding: 10px; background: #007bff; color: white; font-weight: bold;">💬 Message</td>
@@ -92,7 +90,7 @@ console.log(process.env.ADMIN_EMAIL, "admin email");
                         </table>
                     </div>
                     <div style="background: #007bff; padding: 15px; text-align: center; color: white;">
-                        <p style="margin: 0;">📩 Need assistance? Contact us at <a href="mailto:support@uniums.com" style="color: yellow;">support@uniums.com</a></p>
+                        <p style="margin: 0;">📩 Need assistance? Contact us at <a href="mailto:uinums24hours@gmail.com" style="color: yellow;">uinums24hours@gmail.com</a></p>
                     </div>
                 </div>
             `,
