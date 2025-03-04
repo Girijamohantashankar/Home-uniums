@@ -48,6 +48,11 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'Invalid email domain' });
     }
 
+console.log(process.env.EMAIL_USER, "user email");
+console.log(process.env.EMAIL_PASS, "user password");
+console.log(process.env.ADMIN_EMAIL, "admin email");
+
+
     // Setup Nodemailer Transporter
     const transporter = nodemailer.createTransport({
         service: 'gmail',
